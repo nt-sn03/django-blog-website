@@ -7,6 +7,17 @@
 {% block content %}
     <h1>Blog Page</h1>
 
+    <form action="{% url "blogs" %}" method="GET">
+        <div>
+            {% if search %}
+                <input type="text" id="search" name="search" placeholder="Search" value="{{ search }}">
+            {% else %}
+                <input type="text" id="search" name="search" placeholder="Search">
+            {% endif %}
+            <button type="submit">Search</button>
+        </div>
+    </form>
+
     {% if error %}
         <p>{{ error }}</p>
     {% endif %}
