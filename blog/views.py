@@ -3,6 +3,8 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views import View
+from django.shortcuts import redirect
+from django.urls import reverse
 
 posts: list[dict] = [
     {
@@ -37,7 +39,7 @@ posts: list[dict] = [
 
 class HomeView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, 'home.html')
+        return render(request, 'home.html', {'posts': posts[-2:]})
 
 
 class BlogsView(View):
@@ -62,3 +64,23 @@ class BlogDetailView(View):
             if post['slug'] == slug:
                 return render(request, 'blog_detail.html', {'post': post})
         return render(request, 'blog.html', {'posts': posts, 'error': f'{slug} is not found.'})
+
+
+class BlogCreateView(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        return render(request, 'blog_create.html')
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        post_data = request.POST
+
+        posts.append({
+            'id': 4,
+            'title': post_data.get('title'),
+            'slug': post_data.get('slug'),
+            'reading_minute': post_data.get('reading_minute'),
+            'content': post_data.get('content'),
+            'tg_link': post_data.get('tg_link'),
+            'views': 0,
+        })
+
+        return redirect(reverse('blogs'))

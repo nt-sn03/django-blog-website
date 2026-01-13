@@ -1,9 +1,65 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-    Blog Website - Home Page
+Blog Website | Home
 {% endblock title %}
 
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock stylesheet %}
+
 {% block content %}
-    <h1>Home Page</h1>
+
+<section class="home">
+
+    <!-- Hero section -->
+    <section class="hero">
+        <h1>Yangi avlod blog platformasi</h1>
+        <p>
+            Dolzarb yangiliklar, tahliliy maqolalar va chuqur sharhlar —
+            barchasi bir joyda.
+        </p>
+
+        <a href="{% url 'blogs' %}" class="hero-btn">
+            Bloglarni ko‘rish →
+        </a>
+    </section>
+
+    <!-- Featured posts -->
+    {% if posts %}
+        <section class="featured">
+            <h2>So‘nggi maqolalar</h2>
+
+            <ul class="featured-list">
+                {% for post in posts %}
+                    <li class="featured-item">
+                        <h3>
+                            <a href="{% url 'blog_detail' post.slug %}">
+                                {{ post.title }}
+                            </a>
+                        </h3>
+
+                        <p class="meta">
+                            📅 {{ post.published_date|date:"d M Y" }}
+                            · ⏱ {{ post.reading_minute }} daqiqa
+                        </p>
+
+                        <p>
+                            {{ post.content|truncatewords:20 }}
+                        </p>
+
+                        <a href="{% url 'blog_detail' post.slug %}" class="read-more">
+                            Batafsil →
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+        <p>Hozircha maqolalar mavjud emas.</p>
+    {% endif %}
+
+</section>
+
 {% endblock content %}

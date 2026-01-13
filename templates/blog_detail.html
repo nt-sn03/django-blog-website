@@ -1,13 +1,35 @@
-<html>
-    <head>
-        <title>{{ post.title }}</title>
-    </head>
+{% extends "base.html" %}
 
-    <body>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.views }}</p>
-        <p>{{ post.content }}</p>
+{% block title %}
+{{ post.title }}
+{% endblock title %}
 
-        <a href="{% url "blogs" %}">Back to Blogs</a>
-    </body>
-</html>
+{% block content %}
+
+<article>
+    <h1>{{ post.title }}</h1>
+
+    <p>
+        📅 {{ post.published_date|date:"d M Y, H:i" }} |
+        👁 {{ post.views }} |
+        ⏱ {{ post.reading_minute }} daqiqa
+    </p>
+
+    <div>
+        {{ post.content|linebreaks }}
+    </div>
+
+    {% if post.tg_link %}
+        <p>
+            🔗 <a href="{{ post.tg_link }}" target="_blank">
+                Telegram manba
+            </a>
+        </p>
+    {% endif %}
+</article>
+
+<hr>
+
+<a href="{% url 'blogs' %}">← Barcha maqolalar</a>
+
+{% endblock content %}

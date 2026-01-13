@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Blog Website | Yangi maqola
+{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+
+<section class="blog-create">
+
+    <header>
+        <h1>Yangi maqola yaratish</h1>
+        <p>Maqola ma’lumotlarini to‘ldiring</p>
+    </header>
+
+    <form action="{% url 'blog_create' %}" method="post" class="create-form">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div class="form-group">
+            <label for="title">Sarlavha</label>
+            <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Maqola sarlavhasi"
+                required
+            >
+        </div>
+
+        <!-- Slug -->
+        <div class="form-group">
+            <label for="slug">Slug (URL)</label>
+            <input
+                type="text"
+                id="slug"
+                name="slug"
+                placeholder="maqola-slugi"
+                required
+            >
+        </div>
+
+        <!-- Reading minute -->
+        <div class="form-group">
+            <label for="reading_minute">O‘qish vaqti (daqiqada)</label>
+            <input
+                type="number"
+                id="reading_minute"
+                name="reading_minute"
+                min="1"
+                placeholder="5"
+                required
+            >
+        </div>
+
+        <!-- Content -->
+        <div class="form-group">
+            <label for="content">Maqola matni</label>
+            <textarea
+                id="content"
+                name="content"
+                rows="10"
+                placeholder="Maqola matnini shu yerga yozing..."
+                required
+            ></textarea>
+        </div>
+
+        <!-- Telegram link -->
+        <div class="form-group">
+            <label for="tg_link">Telegram havola (ixtiyoriy)</label>
+            <input
+                type="url"
+                id="tg_link"
+                name="tg_link"
+                placeholder="https://t.me/..."
+            >
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-btn">
+            Maqolani saqlash
+        </button>
+    </form>
+
+</section>
+
+{% endblock content %}

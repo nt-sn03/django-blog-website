@@ -1,16 +1,37 @@
-<html>
-    <head>
-        <title>
-            {% block title %}{% endblock title %}
-        </title>
-    </head>
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}My Blog{% endblock title %}
+    </title>
 
-    <body>
-        <ul>
-            <li><a href='{% url "home" %}'>Home</a></li>
-            <li><a href='{% url "blogs" %}'>Blog</a></li>
-        </ul>
+    <!-- Static CSS (keyin qo‘shish uchun) -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        {% block content %}{% endblock content %}
-    </body>
+    {% block stylesheet %}{% endblock stylesheet %}
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'blogs' %}">Blog</a></li>
+                <li><a href="{% url 'blog_create' %}">Create</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>© 2026 My Blog</p>
+    </footer>
+
+</body>
 </html>

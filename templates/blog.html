@@ -1,30 +1,65 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Blog Website - Blog Page
+Blog Website | Blog
 {% endblock title %}
 
 {% block content %}
-    <h1>Blog Page</h1>
 
-    <form action="{% url "blogs" %}" method="GET">
-        <div>
-            {% if search %}
-                <input type="text" id="search" name="search" placeholder="Search" value="{{ search }}">
-            {% else %}
-                <input type="text" id="search" name="search" placeholder="Search">
-            {% endif %}
-            <button type="submit">Search</button>
-        </div>
+<section class="blog-page">
+
+    <header>
+        <h1>Bloglar</h1>
+        <p>So‘nggi va dolzarb maqolalar</p>
+    </header>
+
+    <!-- Search form -->
+    <form action="{% url 'blogs' %}" method="get" class="search-form">
+        <input
+            type="text"
+            name="search"
+            placeholder="Maqola qidirish..."
+            value="{{ search|default:'' }}"
+        >
+        <button type="submit">Qidirish</button>
     </form>
 
+    <!-- Error message -->
     {% if error %}
-        <p>{{ error }}</p>
+        <p class="error">{{ error }}</p>
     {% endif %}
-        
-    <ul>
-        {% for post in posts %}
-            <li><a href='{% url "blog_detail" post.slug %}'>{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
+
+    <!-- Blog list -->
+    {% if posts %}
+        <ul class="blog-list">
+            {% for post in posts %}
+                <li class="blog-item">
+                    <h2>
+                        <a href="{% url 'blog_detail' post.slug %}">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+
+                    <p class="meta">
+                        📅 {{ post.published_date|date:"d M Y" }}
+                        · 👁 {{ post.views }}
+                        · ⏱ {{ post.reading_minute }} daqiqa
+                    </p>
+
+                    <p class="excerpt">
+                        {{ post.content|truncatewords:30 }}
+                    </p>
+
+                    <a class="read-more" href="{% url 'blog_detail' post.slug %}">
+                        Batafsil o‘qish →
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Hozircha maqolalar topilmadi.</p>
+    {% endif %}
+
+</section>
+
 {% endblock content %}
