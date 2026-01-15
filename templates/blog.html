@@ -33,27 +33,29 @@ Blog Website | Blog
     {% if posts %}
         <ul class="blog-list">
             {% for post in posts %}
-                <li class="blog-item">
-                    <h2>
-                        <a href="{% url 'blog_detail' post.slug %}">
-                            {{ post.title }}
+                {% if post.is_published %}
+                    <li class="blog-item">
+                        <h2>
+                            <a href="{% url 'blog_detail' post.slug %}">
+                                {{ post.title }}
+                            </a>
+                        </h2>
+
+                        <p class="meta">
+                            📅 {{ post.published_date|date:"d M Y" }}
+                            · 👁 {{ post.views }}
+                            · ⏱ {{ post.reading_minute }} daqiqa
+                        </p>
+
+                        <p class="excerpt">
+                            {{ post.content|truncatewords:30 }}
+                        </p>
+
+                        <a class="read-more" href="{% url 'blog_detail' post.slug %}">
+                            Batafsil o‘qish →
                         </a>
-                    </h2>
-
-                    <p class="meta">
-                        📅 {{ post.published_date|date:"d M Y" }}
-                        · 👁 {{ post.views }}
-                        · ⏱ {{ post.reading_minute }} daqiqa
-                    </p>
-
-                    <p class="excerpt">
-                        {{ post.content|truncatewords:30 }}
-                    </p>
-
-                    <a class="read-more" href="{% url 'blog_detail' post.slug %}">
-                        Batafsil o‘qish →
-                    </a>
-                </li>
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% else %}

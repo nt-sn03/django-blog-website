@@ -26,7 +26,8 @@ posts: list[dict] = [
 
                     Shanba kuni olingan videolardan birida namoyishchilar Tehronning Gisha tumanidagi ko‘chalarni nazorat qilayotgani aks etgan. Ayrim videoroliklarda esa Eronning ikkinchi eng yirik shahri bo‘lmish Mashhadda namoyishchilar xavfsizlik kuchlari bilan to‘qnashganini ko‘rish mumkin.
         ''',
-        'tg_link': 'https://t.me/c/2828107333/11/1352'
+        'tg_link': 'https://t.me/c/2828107333/11/1352',
+        'is_published': True
     },
     {
         'id': 2,
@@ -36,7 +37,8 @@ posts: list[dict] = [
         'views': 31927,
         'reading_minute': 10,
         'content': '''Hozirda 31 ta viloyatdan 30 tasida namoyishlar kuzatilmoqda. Ular orasida ayniqsa Mashhad shahri alohida e’tiborga loyiq. Mashhad Tehrondan keyin aholi soni bo‘yicha ikkinchi eng yirik shahar bo‘lib, mamlakatning muhim iqtisodiy salohiyatini ta’minlaydi. Eron oliy rahbari Xominaiy aynan Mashhadda tug‘ilgan. Shahar Eron Islom Respublikasining ma’naviy tayanchi hisoblanadi, chunki bu yerda Imom Rizo majmuasi va ko‘plab diniy markazlar joylashgan. So‘nggi kunlarda ijtimoiy tarmoqlarda Mashhadda 30 metrli Eron bayrog‘i yirtib tashlangani va oyatullohga qarshi keskin shiorlar yangragani aks etgan videolar tarqaldi. Bu holat Eron rejimidan nafaqat dunyoviy qatlam, balki diniy va konservativ guruhlar ham norozilik bildirayotganini ko‘rsatadi.''',
-        'tg_link': 'https://t.me/c/2828107333/11/1329'
+        'tg_link': 'https://t.me/c/2828107333/11/1329',
+        'is_published': True
     },
 ]
 

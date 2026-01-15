@@ -114,6 +114,27 @@ Blog Website | Yangi maqola
             {% endif %}
         </div>
 
+        <!-- checkbox link -->
+        <div>
+            <label for="is_published">E'lon qilinsinmi?</label>
+            <input
+                type="checkbox"
+                id="is_published"
+                name="is_published"
+            >
+            {% if form.is_published.errors %}
+                <div class="error">
+                    {{ form.is_published.errors }}
+                </div>
+            {% endif %}
+
+            {% if form.is_published.help_text %}
+                <p class="help">
+                    {{ form.is_published.help_text }}
+                </p>
+            {% endif %}
+        </div>
+
         <!-- Submit -->
         <button type="submit" class="submit-btn">
             Maqolani saqlash
